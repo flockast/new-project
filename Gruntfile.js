@@ -67,7 +67,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-jade');
 
 	// Регистрация команд гранта
 	grunt.registerTask('compile-js', ['concat', 'uglify']);
