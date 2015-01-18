@@ -1,0 +1,24 @@
+$fontUrl: '../fonts/';
+
+@font-face {
+    font-family: 'HelveticaNeueCyrLightlight';
+    src: url($fontUrl+'helveticaneuecyr-light-webfont.eot');
+    src: url($fontUrl+'helveticaneuecyr-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url($fontUrl+'helveticaneuecyr-light-webfont.woff2') format('woff2'),
+         url($fontUrl+'helveticaneuecyr-light-webfont.woff') format('woff'),
+         url($fontUrl+'helveticaneuecyr-light-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyrMedium';
+    src: url($fontUrl+'helveticaneuecyr-medium-webfont.eot');
+    src: url($fontUrl+'helveticaneuecyr-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url($fontUrl+'helveticaneuecyr-medium-webfont.woff2') format('woff2'),
+         url($fontUrl+'helveticaneuecyr-medium-webfont.woff') format('woff'),
+         url($fontUrl+'helveticaneuecyr-medium-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
