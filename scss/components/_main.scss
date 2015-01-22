@@ -3,3 +3,44 @@
 	   -moz-box-sizing:border-box;	        
 	        box-sizing:border-box;
 }
+
+@mixin clearfix() {
+  &:before,
+  &:after {content:'\0020';display:block;overflow:hidden;visibility:hidden;width:0;height:0;}
+  &:after{clear:both;}
+  &{zoom:1;}
+}
+
+@mixin sprite(
+	$x:0, 
+	$y:0, 
+	$width:false, 
+	$height:false,
+	$src:false) {
+	
+	@if $src == false {
+		background:url(../img/sprite.png) $x $y no-repeat;
+		@if $height == true && $width == true{
+			width:$width;
+			height:$height;
+		}
+	}
+	@else {
+		background:url($src) $x $y no-repeat;
+		width:$width;
+		height:$height;
+	}
+}
+
+body {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeueCyrLightlight", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: #000;
+	font-size: 16px;
+	min-width: 960px;
+}
+
+.container {
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
