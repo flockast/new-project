@@ -1,0 +1,101 @@
+// Grid System
+
+// Settings
+$row-width: 1000px;
+$column-gutter: 20px;
+$columns: 12;
+
+// Main mixins
+$column-width: $row-width / $columns;
+
+*{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+
+@mixin clearfix() {
+  &:before,
+  &:after {content:'\0020';display:block;overflow:hidden;visibility:hidden;width:0;height:0;}
+  &:after{clear:both;}
+  &{zoom:1;}
+}
+
+@mixin grid-row() {
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:0;
+  margin-bottom:0;
+  width:$row-width;
+  position:relative;
+  @include clearfix();
+}
+
+@mixin grid-list($columns) {
+  @include clearfix();
+  margin-left: -($column-gutter / 2);
+  margin-right: -($column-gutter / 2);
+  width:$row-width;
+  & > li {
+    width: ($row-width / $columns) - $column-gutter;
+    float:left;
+    display:block;
+    margin:0 ($column-gutter / 2);
+    position:relative;
+  }
+}
+
+// $columns - The number of columns this should be
+// $center - Center these columns? Default: false.
+// $push - # of columns to push. Default: false.
+// $pull - # of columns to pull. Default: false.
+// $collapse - Get rid of gutter padding on column? Default: false.
+// $float - Should this float? Default: true. Options: true, false, left, right.
+// position - get relative with true. Default: false.
+@mixin grid-column(
+  $columns:false,
+  $center:false,
+  $push:false,
+  $pull:false,
+  $collapse:false,
+  $float:true,
+  $position:false) {
+
+  // If positioned for default .column, include relative position
+  // push and pull require position set
+  @if $position or $push or $pull {
+    position: relative;
+  }
+
+  // If collapsed, get rid of gutter padding
+  @if $collapse {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // Gutter padding whenever a column isn't set to collapse
+  // (use $collapse:null to do nothing)
+  @else if $collapse == false {
+    padding-left: $column-gutter / 2;
+    padding-right: $column-gutter / 2;
+  }
+
+  // If a column number is given, calculate width
+  @if $columns {
+    width: $column-width * $columns;
+  }
+
+  // Source Ordering, adds left/right depending on which you use.
+  @if $push { left: $push * $column-width; }
+  @if $pull { right: $push * $column-width;  }
+
+  @if $float {
+    @if $float == left or $float == true { float: left; }
+    @else if $float == right { float: right; }
+    @else { float: none; }
+  }
+
+  // If centered, get rid of float and add appropriate margins
+  @if $center {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+  }
+
+}
