@@ -4,8 +4,8 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		concat: {
 			dist: {
-				src: ['js/app/libs/*.js', 'js/app/*.js'],
-				dest: 'js/app.js'
+				src: ['assets/js/libs/*.js', '!assets/js/*.concat.js'],
+				dest: 'assets/js/app.concat.js'
 			}
 		},
 		uglify: {
@@ -14,33 +14,26 @@ module.exports = function(grunt) {
 					banner: '/* Created by webvlassov | 2015 */\n'
 				},
 				files: {
-					'js/app.min.js': ['js/app.js']
+					'assets/js/app.min.js': ['assets/js/app.concat.js']
 				}
 			}
 		},
 		watch: {
 			css: {
-				files: 'scss/**/*.scss',
-				tasks: ['compile-css'],
+				files: 'assets/scss/**/*.scss',
+				tasks: ['sass'],
 				options: {
 					livereload: true,
 				},
-			},
-			scripts: {
-				files: ['js/**/*.js'],
-				tasks: ['compile-js'],
-				options: {
-					spawn: false,
-				},
-			},
+			}
 		},
 		sass: {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: 'scss/',
+					cwd: 'assets/scss/',
 					src: ['*.scss'],
-					dest: 'css/',
+					dest: 'assets/css',
 					ext: '.css'
 				}]
 			}
@@ -49,15 +42,12 @@ module.exports = function(grunt) {
 			target: {
 				files: [{
 					expand: true,
-					cwd: 'css/',
+					cwd: 'assets/css/',
 					src: ['*.css', '!*.min.css'],
 					dest: 'css/',
 					ext: '.min.css'
 				}]
 			}
-		},
-		jade: {
-
 		}
 	});
 
@@ -69,9 +59,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 	// Регистрация команд гранта
-	grunt.registerTask('compile-js', ['concat', 'uglify']);
-	grunt.registerTask('watch-js', ['compile-js', 'watch']);
 
-	grunt.registerTask('compile-css', ['sass', 'cssmin']);
-	grunt.registerTask('watch-css', ['compile-css', 'watch']);
+	grunt.registerTask('endjs', ['concat', 'uglify']);
+	
 }

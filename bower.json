@@ -1,0 +1,19 @@
+{
+  "name": "webvlassov",
+  "version": "0.0.0",
+  "homepage": "https://github.com/webvlassov/new-project",
+  "authors": [
+    "Konstantin Vlasov <webvlassov@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.3"
+  }
+}
